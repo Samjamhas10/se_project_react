@@ -1,0 +1,12 @@
+.modal {
+}
+
+.modal__close {
+  background-image: url("../../assets/close-icon.png");
+  background-repeat: no-repeat;
+  padding: 0;
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  cursor: pointer;
+}
