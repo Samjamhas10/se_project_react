@@ -53,7 +53,9 @@
 
 .modal__label {
   font-family: "Cabinet Grotesk", sans-serif;
-  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .modal__legend {
@@ -65,11 +67,15 @@
 }
 
 .modal__input {
+  color: #000000;
   border: none;
   border-bottom: 1px solid #000000;
   width: 100%;
   margin-bottom: 24px;
   padding-top: 8px;
+  padding-bottom: 4px;
+  padding-left: 0;
+  text-align: left;
 }
 
 .modal__radio-buttons {
@@ -80,8 +86,23 @@
   flex-direction: column;
 }
 
+.modal__radio-input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.modal__radio-label {
+  vertical-align: middle;
+}
+
 .modal__radio-buttons input[type="radio"] {
-  margin-right: 8px;
+  margin: 2px 8px 2px 0;
+}
+
+.modal__radio-input:checked {
+  accent-color: black;
 }
 
 .modal__label_type_radio {
