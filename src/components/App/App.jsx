@@ -11,7 +11,7 @@ import Footer from "../Footer/Footer";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: 999},
+    temp: { F: 999 },
     city: "",
   });
   const [activeModal, setActiveModal] = useState("preview");
@@ -72,19 +72,22 @@ function App() {
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
           <label htmlFor="hot" className="modal__label modal__label_type_radio">
-            <input type="radio" className="modal__radio-input" /> Hot
+            <input type="radio" className="modal__radio-input" />
+            Hot
           </label>
           <label
             htmlFor="warm"
             className="modal__label modal__label_type_radio"
           >
-            <input id="warm" type="radio" className="modal__radio-input" /> Warm
+            <input id="warm" type="radio" className="modal__radio-input" />
+            Warm
           </label>
           <label
             htmlFor="cold"
             className="modal__label modal__label_type_radio"
           >
-            <input id="cold" type="radio" className="modal__radio-input" /> Cold
+            <input id="cold" type="radio" className="modal__radio-input" />
+            Cold
           </label>
         </fieldset>
       </ModalWithForm>
