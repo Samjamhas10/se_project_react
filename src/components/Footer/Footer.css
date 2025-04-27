@@ -1,28 +1,29 @@
 .footer {
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #000000;
 }
 
 .footer__name {
-    margin: 0;
-    font-family: 'Cabinet Grotesk', sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #000000;
+  margin: 0 0 24px 40px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+ 
 }
 
 .footer__year {
-    margin: 0;
-    margin-right: 42px;
-    font-family: 'Cabinet Grotesk', sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #000000;
+  margin: 0;
+  margin-right: 42px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+ 
 }
