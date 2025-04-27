@@ -1,27 +1,31 @@
 .card {
-    width: 323px;
-    position: relative;
-    display: flex;
-    justify-content: center; 
+  width: 323px;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .card__name {
-    position: absolute;
-    top: 15px;
-    margin: 0;
-    font-family: 'Cabinet Grotesk', sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 16px;
-    line-height: 20px;
-    background-color: #FFFFFF;
-    color: #000000;
-    opacity: 0.6;
-    border-radius: 4px;
-    padding: 2px 12px;
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  background-color: #ffffff;
+  color: #000000;
+  opacity: 0.6;
+  border-radius: 4px;
+  padding: 2px 12px;
 }
 
 .card__image {
-    width: 100%;
-    border-radius: 20px;
+  width: 100%;
+  border-radius: 20px;
+  color: #0000004D;
+  border: 1px solid #0000004D
 }
+
+
