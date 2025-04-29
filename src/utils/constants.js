@@ -1,23 +1,63 @@
 export const weatherOptions = [
   {
     day: true,
-    condition: "clear",
-    url: new URL("../assets/day/clear.png", import.meta.url).href,
+    condition: "Clear",
+    url: new URL("../assets/day/Clear.png", import.meta.url).href,
   },
   {
     day: true,
-    condition: "cloudy",
-    url: new URL("../assets/day/cloudy.png", import.meta.url).href,
+    condition: "Clouds",
+    url: new URL("../assets/day/Clouds.png", import.meta.url).href,
   },
   {
     day: false,
-    condition: "clear",
-    url: new URL("../assets/night/clear.png", import.meta.url).href,
+    condition: "Clear",
+    url: new URL("../assets/night/Clear.png", import.meta.url).href,
   },
   {
     day: false,
-    condition: "cloudy",
-    url: new URL("../assets/night/cloudy.png", import.meta.url).href,
+    condition: "Clouds",
+    url: new URL("../assets/night/Clouds.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "Rain",
+    url: new URL("../assets/day/Rain.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "Rain",
+    url: new URL("../assets/night/Rain.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "Thunderstorm",
+    url: new URL("../assets/day/Thunderstorm.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "Thunderstorm",
+    url: new URL("../assets/night/Thunderstorm.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "Snow",
+    url: new URL("../assets/day/Snow.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "Snow",
+    url: new URL("../assets/night/Snow.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "Haze",
+    url: new URL("../assets/day/Haze.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "Haze",
+    url: new URL("../assets/night/Haze.png", import.meta.url).href,
   },
 ];
 

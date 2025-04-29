@@ -10,12 +10,13 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
   });
 };
 
+
 export const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
   result.temp = { F: data.main.temp };
   result.type = getWeatherType(result.temp.F);
-  result.condition = data.weather[0].main.toLowerCase();
+  result.condition = data.weather[0].main;
   result.isDay = isDay(data.sys, Date.now());
   return result;
 };
@@ -23,26 +24,6 @@ export const filterWeatherData = (data) => {
 const isDay = ({ sunrise, sunset }, now) => {
   return sunrise * 1000 < now && now < sunset * 1000;
 };
-
-// Test cases
-const testIsDay = () => {
-  // Test case 1: During day
-  const dayTest = {
-    sunrise: Date.now() / 1000 - 3600, // 1 hour ago
-    sunset: Date.now() / 1000 + 3600, // 1 hour from now
-  };
-  console.log("Should be day (true):", isDay(dayTest, Date.now()));
-
-  // Test case 2: During night
-  const nightTest = {
-    sunrise: Date.now() / 1000 + 3600, // 1 hour from now
-    sunset: Date.now() / 1000 - 3600, // 1 hour ago
-  };
-  console.log("Should be night (false):", isDay(nightTest, Date.now()));
-};
-
-// Run the tests
-testIsDay();
 
 const getWeatherType = (temperature) => {
   if (temperature > 86) {
