@@ -1,6 +1,6 @@
 # Project 10: What to Wear - Weather App
 
-Description 
+## Description 
  
 - A weather app built with React and Vite that displays and updates current weather and tells you what to wear. 
 
@@ -8,6 +8,7 @@ Description
 
 Outfit suggestions based on temperature
 ESlint for code quality
+Dynamic weather updates 
 
 ### Technologies used 
 
