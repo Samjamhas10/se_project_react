@@ -1,6 +1,6 @@
-.weather-modal {
+.item-modal {
   position: fixed;
-  top: -290px;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
@@ -11,12 +11,12 @@
   visibility: hidden;
 }
 
-.weather-modal__opened {
+.item-modal__opened {
   visibility: visible;
   opacity: 1;
 }
 
-.weather-modal__close {
+.item-modal__close {
   background-image: url("../../assets/close-icon.png");
   background-color: transparent;
   background-size: contain;
@@ -28,23 +28,23 @@
   padding: 0;
   border: none;
   outline: none;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 }
 
-.weather-modal__content {
+.item-modal__content {
   position: relative;
   background-color: #ffffff;
   border-radius: 16px;
 }
 
-.weather-modal__image {
+.item-modal__image {
   max-width: 100%;
   height: auto;
   border-radius: 16px 16px 0 0;
 }
 
-.weather-modal__caption {
+.item-modal__caption {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -52,7 +52,7 @@
   margin: 20px 0 12px 32px;
 }
 
-.weather-modal__weather {
+.item-modal__weather {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
