@@ -39,3 +39,7 @@
 .toggle-switch__checkbox:checked ~ .toggle-switch__circle {
     left: 28px;
 }
+
+.toggle-switch__text_color_white {
+    color: white;
+}
