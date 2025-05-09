@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import { defaultClothingItems } from "../../utils/clothingItems";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -17,6 +20,7 @@ function App() {
     condition: "",
     isDay: true,
   });
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -38,6 +42,16 @@ function App() {
     setActiveModal("");
   };
 
+  const handleAddItemModalSubmit = ({ name, imageURL, weather }) => {
+    // update clothingItems array
+    setClothingItems((prevItems) => [
+      { name, link: imageURL, weather },
+      ...prevItems,
+    ]);
+    // close the modal
+    closeActiveModal();
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -54,11 +68,24 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
         </div>
         <AddItemModal
           isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
+          onAddItemModalSubmit={handleAddItemModalSubmit}
         />
         <ItemModal
           activeModal={activeModal}
