@@ -40,3 +40,8 @@
   font-size: 20px;
   line-height: 1.2;
 }
+
+.header__link {
+  text-decoration: none;
+  color: #000;
+}
