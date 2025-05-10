@@ -11,6 +11,7 @@ import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitC
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/clothingItems";
+import { getItems } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -61,6 +62,15 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        console.log(data);
+        // set the clothing items  
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -72,6 +82,7 @@ function App() {
             <Route
               path="/"
               element={
+                // pass clothing items as a prop
                 <Main
                   weatherData={weatherData}
                   clothingItems={clothingItems}

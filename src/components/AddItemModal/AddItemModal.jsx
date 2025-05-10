@@ -10,6 +10,7 @@ export default function AddItemModal({
   const [name, setName] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [weather, setWeather] = useState("");
+  const [nameError, setNameError] = useState("");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -47,6 +48,8 @@ export default function AddItemModal({
           className="modal__input"
           id="name"
           placeholder="Name"
+          minLength={1}
+          maxLength={30}
           required
           onChange={handleNameChange}
           value={name}
