@@ -2,3 +2,13 @@
   display: flex;
   gap: 20px;
 }
+
+.profile__sidebar {
+  width: 229px;
+}
+
+.profile__clothes-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

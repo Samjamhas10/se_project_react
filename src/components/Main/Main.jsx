@@ -16,7 +16,7 @@ function Main({ weatherData, onCardClick, clothingItems }) {
           {currentTemperatureUnit === "F"
             ? weatherData.temp.F
             : weatherData.temp.C}{" "}
-          &deg; {currentTemperatureUnit} You may want to wear:
+          &deg; {currentTemperatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">
           {clothingItems
