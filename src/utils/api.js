@@ -6,4 +6,33 @@ function getItems() {
   });
 }
 
-export { getItems };
+function addNewClothes(data) {
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  });
+}
+
+function deleteItems(itemId) {
+  return fetch(`${baseUrl}/items/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  });
+}
+
+export { getItems, addNewClothes, deleteItems };

@@ -21,6 +21,7 @@ function App() {
     condition: "",
     isDay: true,
   });
+
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -53,6 +54,13 @@ function App() {
     closeActiveModal();
   };
 
+  const handleDeleteItem = (itemToDelete) => {
+    setClothingItems((prevItems) =>
+      prevItems.filter((item) => item.name !== itemToDelete.name)
+    );
+    closeActiveModal();
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -65,8 +73,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log(data);
-        // set the clothing items  
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);
@@ -111,7 +118,9 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          onDelete={handleDeleteItem}
         />
+
         <Footer />
       </div>
     </CurrentTemperatureUnitContext.Provider>
