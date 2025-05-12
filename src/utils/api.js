@@ -24,15 +24,18 @@ function addNewClothes(data) {
 function deleteItems(itemId) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
   }).then((res) => {
     if (res.ok) {
-      return res.json();
+      return;
     }
     return Promise.reject(`Error: ${res.status}`);
   });
 }
 
-export { getItems, addNewClothes, deleteItems };
+const api = {
+  deleteItems,
+  addNewClothes,
+  getItems,
+};
+
+export default api;

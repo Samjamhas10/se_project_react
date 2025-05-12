@@ -11,7 +11,7 @@ import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitC
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/clothingItems";
-import { getItems } from "../../utils/api";
+import api from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,6 +22,8 @@ function App() {
     isDay: true,
   });
 
+  const [isLoading, setIsLoading] = useState(null);
+  const [error, setError] = useState(null);
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -47,7 +49,7 @@ function App() {
   const handleAddItemModalSubmit = ({ name, imageURL, weather }) => {
     // update clothingItems array
     setClothingItems((prevItems) => [
-      { name, link: imageURL, weather },
+      { name, imageUrl: imageURL, weather },
       ...prevItems,
     ]);
     // close the modal
@@ -55,10 +57,16 @@ function App() {
   };
 
   const handleDeleteItem = (itemToDelete) => {
-    setClothingItems((prevItems) =>
-      prevItems.filter((item) => item.name !== itemToDelete.name)
-    );
-    closeActiveModal();
+    console.log("Item to delete:", itemToDelete);
+    api
+      .deleteItems(itemToDelete._id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== itemToDelete._id)
+        );
+        closeActiveModal();
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -71,11 +79,20 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getItems()
+    setIsLoading(true);
+    setError(null);
+    api
+      .getItems()
       .then((data) => {
         setClothingItems(data);
       })
-      .catch(console.error);
+      .catch((err) => {
+        setError(err.message || "Error fetching items");
+        console.error(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -89,7 +106,6 @@ function App() {
             <Route
               path="/"
               element={
-                // pass clothing items as a prop
                 <Main
                   weatherData={weatherData}
                   clothingItems={clothingItems}
