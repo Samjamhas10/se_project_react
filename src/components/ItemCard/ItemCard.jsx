@@ -5,7 +5,7 @@ function ItemCard({ item, onCardClick }) {
     onCardClick(item);
   };
 
-  console.log(item)
+
 
   return (
     <li className="card">

@@ -25,7 +25,7 @@ export default function AddItemModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data being sent:", { name, imageUrl, weather });
+
     onAddItemModalSubmit({ name, imageUrl, weather });
     // empty the inputs
     setName("");

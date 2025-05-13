@@ -11,7 +11,6 @@ function ClothesSection({ weatherData, onCardClick, clothingItems }) {
       <ul className="clothes-section__items">
         {clothingItems &&
           clothingItems.map((item) => {
-            console.log("Mapping item:", item);
             return (
               <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
             );

@@ -22,7 +22,6 @@ function addNewClothes(data) {
 }
 
 function deleteItems(item_id) {
-  console.log("Attempting to delete item with ID:", item_id);
   return fetch(`${baseUrl}/items/${item_id}`, {
     method: "DELETE",
     headers: {

@@ -10,7 +10,6 @@ import { coordinates, APIkey } from "../../utils/constants";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
-
 import DeletionModal from "../DeletionModal/DeletionModal";
 import api from "../../utils/api";
 
@@ -55,8 +54,6 @@ function App() {
     api
       .addNewClothes({ name, imageUrl, weather })
       .then((newItem) => {
-        console.log(clothingItems);
-        console.log(newItem);
         setClothingItems((prevItems) => [newItem, ...prevItems]);
         closeActiveModal();
       })
@@ -64,11 +61,9 @@ function App() {
   };
 
   const handleDeleteItem = (itemToDelete) => {
-    console.log("itemtodelete", itemToDelete);
     api
       .deleteItems(itemToDelete._id)
-      .then((newItem) => {
-        console.log("New item received from API:", newItem);
+      .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== itemToDelete._id)
         );
