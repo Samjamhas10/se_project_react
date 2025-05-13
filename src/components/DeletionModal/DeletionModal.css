@@ -1,0 +1,12 @@
+.deletion-modal {
+  visibility: hidden;
+}
+
+.deletion-modal__content {
+}
+
+.deletion-modal__confirm {
+}
+
+.deletion-modal__cancel {
+}

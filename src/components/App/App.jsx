@@ -10,7 +10,8 @@ import { coordinates, APIkey } from "../../utils/constants";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { defaultClothingItems } from "../../utils/clothingItems";
+
+import DeletionModal from "../DeletionModal/DeletionModal";
 import api from "../../utils/api";
 
 function App() {
@@ -22,12 +23,21 @@ function App() {
     isDay: true,
   });
 
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const [isLoading, setIsLoading] = useState(null);
   const [error, setError] = useState(null);
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+
+  const handleDeleteClick = (card) => {
+    //set active modal to delete
+    //setActiveModal('del')
+    setIsDeleteModalOpen(true);
+    setActiveModal("delete");
+  };
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -46,18 +56,28 @@ function App() {
     setActiveModal("");
   };
 
-  const handleAddItemModalSubmit = ({ name, imageURL, weather }) => {
-    // update clothingItems array
-    setClothingItems((prevItems) => [
-      { name, imageUrl: imageURL, weather },
-      ...prevItems,
-    ]);
-    // close the modal
-    closeActiveModal();
+  const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
+    api
+      .addNewClothes({ name, imageUrl, weather })
+      .then((newItem) => {
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        closeActiveModal();
+      })
+      .catch((err) => console.error(err));
   };
 
+  // const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
+  //   // update clothingItems array
+  //   api.addNewClothes({ name, link: imageUrl, weather });
+  //   setClothingItems((prevItems) => [
+  //     { name, link: imageUrl, weather },
+  //     ...prevItems,
+  //   ]);
+  //   // close the modal
+  //   closeActiveModal();
+  // };
+
   const handleDeleteItem = (itemToDelete) => {
-    console.log("Item to delete:", itemToDelete);
     api
       .deleteItems(itemToDelete._id)
       .then(() => {
@@ -135,8 +155,20 @@ function App() {
           card={selectedCard}
           onClose={closeActiveModal}
           onDelete={handleDeleteItem}
+          // on handle Click
+          handleDeleteClick={handleDeleteClick}
         />
+        <DeletionModal
+          isOpen={activeModal === "delete"}
+          activeModal={activeModal}
+          //isOpen={activeModla=== 'del'}
 
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={() => {
+            handleDeleteItem(selectedCard);
+            setIsDeleteModalOpen(false);
+          }}
+        />
         <Footer />
       </div>
     </CurrentTemperatureUnitContext.Provider>

@@ -1,6 +1,8 @@
+import { useState } from "react";
 import "./ItemModal.css";
+import DeletionModal from "../DeletionModal/DeletionModal";
 
-function ItemModal({ activeModal, onClose, card, onDelete }) {
+function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
   return (
     <div
       className={`item-modal ${
@@ -15,11 +17,18 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
           type="button"
           className="item-modal__close"
         ></button>
-        <img src={card.link} alt="card.name" className="item-modal__image" />
+        <img
+          src={card.imageUrl}
+          alt="card.name"
+          className="item-modal__image"
+        />
         <div className="item-modal__footer">
           <h2 className="item-modal__caption">{card.name}</h2>
           <p className="item-modal__weather">Weather: {card.weather}</p>
-          <button className="item-modal__delete" onClick={() => onDelete(card)}>
+          <button
+            className="item-modal__delete"
+            onClick={() => handleDeleteClick(card)}
+          >
             Delete item
           </button>
         </div>

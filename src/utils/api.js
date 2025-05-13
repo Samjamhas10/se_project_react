@@ -21,8 +21,8 @@ function addNewClothes(data) {
   });
 }
 
-function deleteItems(itemId) {
-  return fetch(`${baseUrl}/items/${itemId}`, {
+function deleteItems(item_id) {
+  return fetch(`${baseUrl}/items/${item_id}`, {
     method: "DELETE",
   }).then((res) => {
     if (res.ok) {
