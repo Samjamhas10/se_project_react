@@ -23,10 +23,10 @@ function App() {
     isDay: true,
   });
 
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(null);
-  const [error, setError] = useState(null);
+  // const [isLoading, setIsLoading] = useState(null);
+  // const [error, setError] = useState(null);
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -34,9 +34,8 @@ function App() {
 
   const handleDeleteClick = (card) => {
     //set active modal to delete
-    //setActiveModal('del')
-    setIsDeleteModalOpen(true);
     setActiveModal("delete");
+    setSelectedCard(card);
   };
 
   const handleToggleSwitchChange = () => {
@@ -66,17 +65,6 @@ function App() {
       .catch((err) => console.error(err));
   };
 
-  // const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-  //   // update clothingItems array
-  //   api.addNewClothes({ name, link: imageUrl, weather });
-  //   setClothingItems((prevItems) => [
-  //     { name, link: imageUrl, weather },
-  //     ...prevItems,
-  //   ]);
-  //   // close the modal
-  //   closeActiveModal();
-  // };
-
   const handleDeleteItem = (itemToDelete) => {
     api
       .deleteItems(itemToDelete._id)
@@ -99,8 +87,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
     api
       .getItems()
       .then((data) => {
@@ -110,9 +96,7 @@ function App() {
         setError(err.message || "Error fetching items");
         console.error(err);
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => {});
   }, []);
 
   return (
@@ -149,7 +133,7 @@ function App() {
           isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
           onAddItemModalSubmit={handleAddItemModalSubmit}
-          />
+        />
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
@@ -157,19 +141,17 @@ function App() {
           onDelete={handleDeleteItem}
           // on handle Click
           handleDeleteClick={handleDeleteClick}
-          />
-        <DeletionModal
-          isOpen={activeModal === "delete"}//true false
-          activeModal={activeModal}
-          //isOpen={activeModla=== 'del'}
-          onSubmit={handleDeleteItem}
-
-          onClose={closeActiveModal}
-          onConfirm={() => {
-            handleDeleteItem(selectedCard);
-            setIsDeleteModalOpen(false);
-          }}
         />
+        <DeletionModal
+          isOpen={activeModal === "delete"} //true or false
+          activeModal={activeModal}
+          onSubmit={() => handleDeleteItem(selectedCard)}
+          onClose={closeActiveModal}
+          // onConfirm={() => {
+          //   handleDeleteItem(selectedCard);
+          // }}
+        />
+
         <Footer />
       </div>
     </CurrentTemperatureUnitContext.Provider>

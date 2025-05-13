@@ -1,12 +1,24 @@
-.deletion-modal {
-  visibility: hidden;
+.modal__title-delete {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
 }
 
-.deletion-modal__content {
+.modal__delete-content {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.deletion-modal__confirm {
+.modal__submit {
+  background-color: white;
+  color: #ff4d00;
+  margin-top: 40px;
 }
 
-.deletion-modal__cancel {
+.btn-cancel {
+  background-color: transparent;
+  border: none;
 }
