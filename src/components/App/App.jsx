@@ -23,10 +23,6 @@ function App() {
     isDay: true,
   });
 
-  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
-  // const [isLoading, setIsLoading] = useState(null);
-  // const [error, setError] = useState(null);
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -92,10 +88,7 @@ function App() {
       .then((data) => {
         setClothingItems(data);
       })
-      .catch((err) => {
-        setError(err.message || "Error fetching items");
-        console.error(err);
-      })
+      .catch((err) => {})
       .finally(() => {});
   }, []);
 
@@ -139,7 +132,6 @@ function App() {
           card={selectedCard}
           onClose={closeActiveModal}
           onDelete={handleDeleteItem}
-          // on handle Click
           handleDeleteClick={handleDeleteClick}
         />
         <DeletionModal
@@ -147,9 +139,6 @@ function App() {
           activeModal={activeModal}
           onSubmit={() => handleDeleteItem(selectedCard)}
           onClose={closeActiveModal}
-          // onConfirm={() => {
-          //   handleDeleteItem(selectedCard);
-          // }}
         />
 
         <Footer />

@@ -8,10 +8,11 @@ function ModalWithForm({
   onSubmit,
   titleStyles,
   titleClass,
+  contentClass,
 }) {
   return (
     <div className={`modal ${isOpen && "modal__opened"}`}>
-      <div className="modal__content">
+      <div className={`modal__content ${contentClass}`}>
         <h2 style={titleStyles} className={titleClass}>
           {title}
         </h2>
