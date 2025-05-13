@@ -13,7 +13,6 @@ function DeletionModal({
 
   return (
     <ModalWithForm
-      //   buttonText={"Yes, delete item"}
       title={`Are you sure you want to delete this item?\nThis action is irreversible.`}
       isOpen={isOpen}
       onClose={onClose}
@@ -23,7 +22,7 @@ function DeletionModal({
       contentClass="modal__content_type_delete"
     >
       <div className="modal__delete-content">
-        <button type="submit" className="modal__submit" onClick={onSubmit}>
+        <button type="submit" className="modal__submit-delete">
           Yes, delete item
         </button>
         <button type="button" className="btn-cancel" onClick={onClose}>

@@ -16,6 +16,7 @@ function ModalWithForm({
         <h2 style={titleStyles} className={titleClass}>
           {title}
         </h2>
+
         <button
           onClick={onClose}
           type="button"

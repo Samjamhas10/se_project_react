@@ -8,16 +8,15 @@ export default function AddItemModal({
   onAddItemModalSubmit,
 }) {
   const [name, setName] = useState("");
-  const [imageURL, setImageURL] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
-  const [nameError, setNameError] = useState("");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
   const handleImageURLChange = (e) => {
-    setImageURL(e.target.value);
+    setImageUrl(e.target.value);
   };
 
   const handleWeatherChange = (e) => {
@@ -26,16 +25,18 @@ export default function AddItemModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItemModalSubmit({ name, imageURL, weather });
+    console.log("Form Data being sent:", { name, imageUrl, weather });
+    onAddItemModalSubmit({ name, imageUrl, weather });
     // empty the inputs
     setName("");
-    setImageURL("");
+    setImageUrl("");
     setWeather("");
   };
 
   return (
     <ModalWithForm
       title="New garment"
+      titleClass="modal__title"
       buttonText="Add garment"
       isOpen={isOpen}
       onClose={onClose}
@@ -61,10 +62,10 @@ export default function AddItemModal({
           type="url"
           className="modal__input"
           id="imageUrl"
-          placeholder="Image URL"
+          placeholder="Image Url"
           required
           onChange={handleImageURLChange}
-          value={imageURL}
+          value={imageUrl}
         ></input>
       </label>
       <fieldset className="modal__radio-buttons">
@@ -107,8 +108,8 @@ export default function AddItemModal({
         </label>
       </fieldset>
       <button type="submit" className="modal__submit">
-            Add garment
-          </button>
+        Add garment
+      </button>
     </ModalWithForm>
   );
 }

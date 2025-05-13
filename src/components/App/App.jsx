@@ -55,6 +55,8 @@ function App() {
     api
       .addNewClothes({ name, imageUrl, weather })
       .then((newItem) => {
+        console.log(clothingItems);
+        console.log(newItem);
         setClothingItems((prevItems) => [newItem, ...prevItems]);
         closeActiveModal();
       })
@@ -62,9 +64,11 @@ function App() {
   };
 
   const handleDeleteItem = (itemToDelete) => {
+    console.log("itemtodelete", itemToDelete);
     api
       .deleteItems(itemToDelete._id)
-      .then(() => {
+      .then((newItem) => {
+        console.log("New item received from API:", newItem);
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== itemToDelete._id)
         );
@@ -88,7 +92,9 @@ function App() {
       .then((data) => {
         setClothingItems(data);
       })
-      .catch((err) => {})
+      .catch((err) => {
+        console.error("Error fetching items:", err);
+      })
       .finally(() => {});
   }, []);
 
@@ -137,7 +143,10 @@ function App() {
         <DeletionModal
           isOpen={activeModal === "delete"} //true or false
           activeModal={activeModal}
-          onSubmit={() => handleDeleteItem(selectedCard)}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleDeleteItem(selectedCard);
+          }}
           onClose={closeActiveModal}
         />
 

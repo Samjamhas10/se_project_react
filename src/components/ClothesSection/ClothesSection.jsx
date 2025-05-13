@@ -1,8 +1,7 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
-import clothingItems from "../../utils/clothingItems";
 
-function ClothesSection({ weatherData, onCardClick }) {
+function ClothesSection({ weatherData, onCardClick, clothingItems }) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">
@@ -10,11 +9,9 @@ function ClothesSection({ weatherData, onCardClick }) {
         <button className="clothes-section__add">+ Add New</button>
       </div>
       <ul className="clothes-section__items">
-        {clothingItems
-          .filter((item) => {
-            return item.weather === weatherData.type;
-          })
-          .map((item) => {
+        {clothingItems &&
+          clothingItems.map((item) => {
+            console.log("Mapping item:", item);
             return (
               <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
             );

@@ -11,7 +11,6 @@
   margin: 0;
   text-align: center;
   white-space: pre-line;
-
 }
 
 .modal__delete-content {
@@ -20,7 +19,7 @@
   align-items: center;
 }
 
-.modal__submit {
+.modal__submit-delete {
   background-color: white;
   color: #ff4d00;
   padding: 0;
