@@ -149,7 +149,7 @@ function App() {
           isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
           onAddItemModalSubmit={handleAddItemModalSubmit}
-        />
+          />
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
@@ -157,13 +157,14 @@ function App() {
           onDelete={handleDeleteItem}
           // on handle Click
           handleDeleteClick={handleDeleteClick}
-        />
+          />
         <DeletionModal
-          isOpen={activeModal === "delete"}
+          isOpen={activeModal === "delete"}//true false
           activeModal={activeModal}
           //isOpen={activeModla=== 'del'}
+          onSubmit={handleDeleteItem}
 
-          onClose={() => setIsDeleteModalOpen(false)}
+          onClose={closeActiveModal}
           onConfirm={() => {
             handleDeleteItem(selectedCard);
             setIsDeleteModalOpen(false);

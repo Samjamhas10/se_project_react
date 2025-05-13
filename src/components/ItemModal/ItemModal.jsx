@@ -6,7 +6,7 @@ function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
   return (
     <div
       className={`item-modal ${
-        activeModal === "preview" || activeModal === "delete"
+        activeModal === "preview"
           ? "item-modal__opened"
           : ""
       } ${activeModal === "delete" ? "delete-modal" : ""}`}
@@ -23,8 +23,12 @@ function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
           className="item-modal__image"
         />
         <div className="item-modal__footer">
-          <h2 className="item-modal__caption">{card.name}</h2>
-          <p className="item-modal__weather">Weather: {card.weather}</p>
+         
+            <div>
+              <h2 className="item-modal__caption">{card.name}</h2>
+              <p className="item-modal__weather">Weather: {card.weather}</p>
+            </div>
+         
           <button
             className="item-modal__delete"
             onClick={() => handleDeleteClick(card)}
