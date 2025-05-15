@@ -51,13 +51,10 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    api
-      .addNewClothes({ name, imageUrl, weather })
-      .then((newItem) => {
-        setClothingItems((prevItems) => [newItem, ...prevItems]);
-        closeActiveModal();
-      })
-      .catch((err) => console.error(err));
+    return api.addNewClothes({ name, imageUrl, weather }).then((newItem) => {
+      setClothingItems((prevItems) => [newItem, ...prevItems]);
+      closeActiveModal();
+    });
   };
 
   const handleDeleteItem = (itemToDelete) => {
@@ -93,6 +90,7 @@ function App() {
       .finally(() => {});
   }, []);
 
+  //props = {weatherData: weatherData, clothingItems: clothingItems, onCardClick: handleCardClick}
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -118,6 +116,7 @@ function App() {
                   weatherData={weatherData}
                   clothingItems={clothingItems}
                   onCardClick={handleCardClick}
+                  handleAddClick={handleAddClick}
                 />
               }
             />
@@ -144,7 +143,6 @@ function App() {
           }}
           onClose={closeActiveModal}
         />
-
         <Footer />
       </div>
     </CurrentTemperatureUnitContext.Provider>

@@ -19,6 +19,7 @@
   color: #00000099;
   border: none;
   padding: 0;
+  cursor: pointer;
 }
 
 .clothes-section__items {

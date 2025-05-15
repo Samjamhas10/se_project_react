@@ -1,44 +1,43 @@
 const baseUrl = "http://localhost:3001";
 
-function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: $(res.status)`);
-  });
-}
+class Api {
+  constructor(baseUrl) {
+    this._baseUrl = baseUrl;
+  }
 
-function addNewClothes(data) {
-  return fetch(`${baseUrl}/items`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then((res) => {
+  _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Error: ${res.status}`);
-  });
+  }
+
+  getItems() {
+    return fetch(`${this._baseUrl}/items`)
+      .then(this._checkResponse)
+      .then((items) => items.reverse());
+  }
+
+  addNewClothes(data) {
+    return fetch(`${this._baseUrl}/items`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then(this._checkResponse);
+  }
+
+  deleteItems(item_id) {
+    return fetch(`${this._baseUrl}/items/${item_id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(this._checkResponse);
+  }
 }
 
-function deleteItems(item_id) {
-  return fetch(`${baseUrl}/items/${item_id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((res) => {
-    if (res.ok) {
-      return;
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
-}
-
-const api = {
-  deleteItems,
-  addNewClothes,
-  getItems,
-};
+const api = new Api(baseUrl);
 
 export default api;

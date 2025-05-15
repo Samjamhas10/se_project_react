@@ -26,11 +26,15 @@ export default function AddItemModal({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onAddItemModalSubmit({ name, imageUrl, weather });
-    // empty the inputs
-    setName("");
-    setImageUrl("");
-    setWeather("");
+    onAddItemModalSubmit({ name, imageUrl, weather })
+      // empty the inputs
+      .then(() => {
+        setName("");
+        setImageUrl("");
+        setWeather("");
+      }).catch((err) => {
+        //alert("Could not create new clothing item.")
+        console.error(err)});
   };
 
   return (
