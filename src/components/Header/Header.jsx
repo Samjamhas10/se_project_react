@@ -17,14 +17,6 @@ function Header({ handleAddClick, weatherData }) {
     setIsMobileMenuOpened((prev) => !prev);
   };
 
-  // useEffect(() => {
-  //   if (window.innerWidth > 627) {
-  //     setIsMobileMenuOpened(false);
-  //   }
-  // }, 
-  // // add event listener
-  // []);
-
   return (
     <header className="header">
       <div className="header__container">

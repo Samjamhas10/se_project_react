@@ -60,11 +60,7 @@
 
 @media screen and (max-width: 627px) {
   .header {
-    /* padding: 32px 0 16px; */
     padding: 0;
-  }
-
-  .header__logo {
   }
 
   .header__container {
@@ -103,30 +99,35 @@
   }
 
   .mobile-menu {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: absolute;
     padding: 20px;
     top: 18px;
-    left: 16px;
-    /* background: red; */
+    left: 0;
     background: #fff;
-    width: 322px;
+    width: 100%;
     height: 208px;
     border-radius: 10px;
+    z-index: 1;
+    box-sizing: border-box;
+  }
+
+  .mobile-menu__logo {
+    position: absolute;
+    top: 74px;
+    right: 40px;
+    width: 54px;
+    height: auto;
   }
 
   .mobile-menu__list {
     list-style-type: none;
     font-family: "Cabinet Grotesk", sans-serif;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
-  }
-
-  .mobile-menu__username {
-  }
-
-  .mobile-menu__add-clothes-btn {
+    font-size: 24px;
+    line-height: 60px;
   }
 
   .mobile-menu__close {

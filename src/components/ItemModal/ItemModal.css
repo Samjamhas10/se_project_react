@@ -96,4 +96,8 @@
 
   .item-modal__close {
   }
+
+  .item-modal__delete {
+    /* display: none; */
+  }
 }
