@@ -18,6 +18,19 @@
   line-height: 1;
 }
 
+@media screen and (max-width: 710px) {
+  .cards__list {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .cards__text {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .cards__list {
     display: grid;

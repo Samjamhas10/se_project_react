@@ -1,5 +1,5 @@
 .card {
-  width: 323px;
+  width: 325px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -27,11 +27,14 @@
   border: 1px solid #0000004d;
 }
 
+@media screen and (max-width: 600px) {
+  
+}
+
 @media screen and (max-width: 500px) {
   .card {
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
     width: 100%;
     gap: 12px;
   }
