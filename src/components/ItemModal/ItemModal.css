@@ -79,3 +79,21 @@
   cursor: pointer;
   height: fit-content;
 }
+
+@media screen and (max-width: 520px) {
+  .item-modal__content {
+    width: 430px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .item__modal {
+  }
+
+  .item-modal__content {
+    width: 343px;
+  }
+
+  .item-modal__close {
+  }
+}

@@ -8,9 +8,9 @@
   margin-right: 24px;
 }
 
-/* .mobile-menu {
+.mobile-menu {
   display: none;
-} */
+}
 
 .header__date-and-location {
   margin: 0;
@@ -103,14 +103,14 @@
   }
 
   .mobile-menu {
-    visibility: visible;
+    display: block;
     position: absolute;
-    /* padding: 20px; */
+    padding: 20px;
     top: 18px;
     left: 16px;
-    /* width: 100%; */
+    /* background: red; */
     background: #fff;
-    width: 343px;
+    width: 322px;
     height: 208px;
     border-radius: 10px;
   }

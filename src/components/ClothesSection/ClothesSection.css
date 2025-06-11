@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  width: 100%;
+
 }
 
 .clothes-section {
@@ -33,5 +33,4 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 325px);
   gap: 20px;
-  width: 100%;
 }
