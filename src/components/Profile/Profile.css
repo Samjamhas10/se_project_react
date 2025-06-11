@@ -11,4 +11,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 627px) {
+  .profile {
+    display: block;
+  }
+
+  .profile__sidebar {
+
+  }
+
+  .profile__clothes-section {
+
+  }
 }

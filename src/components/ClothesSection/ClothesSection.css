@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   gap: 20px;
-
 }
 
 .clothes-section {
@@ -33,4 +32,16 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 325px);
   gap: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .clothes-section__header {
+    justify-content: space-between;
+  }
+
+  .clothes-section__items {
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, 162px);
+    margin: 16px 0 40px;
+  }
 }
