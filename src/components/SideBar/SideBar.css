@@ -7,7 +7,6 @@
 .sidebar__avatar {
   width: 56px;
   height: 56px;
-
 }
 
 .sidebar__username {
@@ -16,4 +15,54 @@
   font-size: 20px;
   line-height: 100%;
   margin-left: 16px;
+}
+
+.sidebar__data {
+  display: none;
+}
+
+.sidebar__sign-out {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .sidebar {
+    gap: 20px;
+    border-top: 1px solid #0000004d;
+    border-bottom: 1px solid #0000004d;
+  }
+
+  .sidebar__options {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .sidebar__avatar {
+    margin: 16px;
+  }
+
+  .sidebar__username {
+    margin: 0;
+  }
+
+  .sidebar__data {
+    color: #00000099;
+    display: block;
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    margin: 12px 0 8px;
+  }
+
+  .sidebar__sign-out {
+    color: #00000099;
+    display: block;
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
 }
