@@ -16,9 +16,14 @@ function Header({ handleAddClick, weatherData }) {
         <Link to="/">
           <img className="header__logo" src={logo} alt="WTWR logo" />
         </Link>
+        {/* {mobileView && } */}
         <p className="header__date-and-location">
           {currentDate}, {weatherData.city}
         </p>
+      </div>
+      <div className="hamburger">
+        <span></span>
+        <span></span>
       </div>
       <div className="header__user-container">
         <ToggleSwitch className="header__toggle-switch" />

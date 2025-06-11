@@ -11,7 +11,6 @@
   margin: 0;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-
   font-size: 16px;
   line-height: 20px;
   background-color: #ffffff;
@@ -24,8 +23,26 @@
 .card__image {
   width: 100%;
   border-radius: 20px;
-  color: #0000004D;
-  border: 1px solid #0000004D
+  color: #0000004d;
+  border: 1px solid #0000004d;
 }
 
+@media screen and (max-width: 500px) {
+  .card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 12px;
+  }
 
+  .card__name {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .card__image {
+    width: 162px;
+    height: 162px;
+  }
+}
