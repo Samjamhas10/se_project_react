@@ -86,7 +86,7 @@
   }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 470px) {
   .item__modal {
   }
 
@@ -98,6 +98,6 @@
   }
 
   .item-modal__delete {
-    /* display: none; */
+    display: none;
   }
 }

@@ -130,6 +130,11 @@
     line-height: 60px;
   }
 
+  .mobile-menu__add-clothes-btn {
+    cursor: pointer;
+    display: inline-block;
+  }
+
   .mobile-menu__close {
     background-image: url("../../assets/mobile-close.png");
     cursor: pointer;

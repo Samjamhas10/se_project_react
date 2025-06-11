@@ -49,7 +49,12 @@ function Header({ handleAddClick, weatherData }) {
           <ul className="mobile-menu__list">
             <li className="mobile-menu__username">Terrance Tegenge</li>
             <li></li>
-            <li className="mobile-menu__add-clothes-btn">+ Add clothes</li>
+            <li
+              onClick={handleAddClick}
+              className="mobile-menu__add-clothes-btn"
+            >
+              + Add clothes
+            </li>
           </ul>
         </nav>
       )}
