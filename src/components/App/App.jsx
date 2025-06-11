@@ -27,6 +27,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
+  
+
   const handleDeleteClick = (card) => {
     //set active modal to delete
     setActiveModal("delete");
@@ -97,7 +99,7 @@ function App() {
     >
       <div className="page">
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header handleAddClick={handleAddClick} weatherData={weatherData}  />
           <Routes>
             <Route
               path="/"

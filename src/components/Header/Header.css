@@ -8,6 +8,10 @@
   margin-right: 24px;
 }
 
+/* .mobile-menu {
+  display: none;
+} */
+
 .header__date-and-location {
   margin: 0;
   font-family: "Cabinet Grotesk", sans-serif;
@@ -76,7 +80,7 @@
   }
 
   .hamburger {
-    background-color: red;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -96,5 +100,48 @@
 
   .header__user-container {
     display: none;
+  }
+
+  .mobile-menu {
+    visibility: visible;
+    position: absolute;
+    /* padding: 20px; */
+    top: 18px;
+    left: 16px;
+    /* width: 100%; */
+    background: #fff;
+    width: 343px;
+    height: 208px;
+    border-radius: 10px;
+  }
+
+  .mobile-menu__list {
+    list-style-type: none;
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .mobile-menu__username {
+  }
+
+  .mobile-menu__add-clothes-btn {
+  }
+
+  .mobile-menu__close {
+    background-image: url("../../assets/mobile-close.png");
+    cursor: pointer;
+    background-color: transparent;
+    background-size: contain;
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    padding: 0;
+    border: none;
+    outline: none;
+    color: #ffffff;
   }
 }
