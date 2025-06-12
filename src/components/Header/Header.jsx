@@ -6,6 +6,14 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useEffect, useState } from "react";
 
 function Header({ handleAddClick, weatherData }) {
+  // const navItems = {
+  //   link: "/clothes", name: "Clothing"
+  // }
+
+  // navItems.map((item) => {
+  //   <Link to={item.link}>{</Link>
+  // })
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -55,6 +63,9 @@ function Header({ handleAddClick, weatherData }) {
             >
               + Add clothes
             </li>
+            {/* <li>
+              <ToggleSwitch className="header__toggle-switch" />
+            </li> */}
           </ul>
         </nav>
       )}

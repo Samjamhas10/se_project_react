@@ -3,10 +3,6 @@
   gap: 116px;
 }
 
-.profile__sidebar {
-  width: 229px;
-}
-
 .profile__clothes-section {
   display: flex;
   flex-direction: column;

@@ -35,7 +35,6 @@
   .sidebar__options {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
   }
 
   .sidebar__avatar {
@@ -43,7 +42,7 @@
   }
 
   .sidebar__username {
-    margin: 0;
+    margin: 20px 0 0;
   }
 
   .sidebar__data {
@@ -64,5 +63,6 @@
     font-size: 20px;
     line-height: 1;
     margin-bottom: 20px;
+    margin-top: 0;
   }
 }
