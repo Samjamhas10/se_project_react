@@ -1,19 +1,18 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { useEffect, useState } from "react";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
-function Header({ handleAddClick, weatherData }) {
-  // const navItems = {
-  //   link: "/clothes", name: "Clothing"
-  // }
-
-  // navItems.map((item) => {
-  //   <Link to={item.link}>{</Link>
-  // })
-
+function Header({
+  handleAddClick,
+  weatherData,
+  handleRegisterModal,
+  handleLoginModal,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -71,13 +70,21 @@ function Header({ handleAddClick, weatherData }) {
       )}
       <div className="header__user-container">
         <ToggleSwitch className="header__toggle-switch" />
-        <button onClick={handleAddClick} className="header__add-clothes-btn">
+        <RegisterModal className="header__register-modal" />
+        <button type="button" onClick={handleRegisterModal}>
+          Sign up
+        </button>
+        <LoginModal className="header__login-modal" />
+        <button type="button" onClick={handleLoginModal}>
+          Log in
+        </button>
+        {/* <button onClick={handleAddClick} className="header__add-clothes-btn">
           + Add clothes
         </button>
         <Link to="/profile" className="header__link ">
           <p className="header__username">Terrence Tegegne</p>
           <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
-        </Link>
+        </Link> */}
       </div>
     </header>
   );

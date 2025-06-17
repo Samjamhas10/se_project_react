@@ -32,9 +32,11 @@ export default function AddItemModal({
         setName("");
         setImageUrl("");
         setWeather("");
-      }).catch((err) => {
+      })
+      .catch((err) => {
         //alert("Could not create new clothing item.")
-        console.error(err)});
+        console.error(err);
+      });
   };
 
   return (

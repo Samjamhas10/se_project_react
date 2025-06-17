@@ -11,7 +11,12 @@ import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitC
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import DeletionModal from "../DeletionModal/DeletionModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 import api from "../../utils/api";
+import { register, authorize, checkToken } from "../../utils/auth";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { setToken, getToken } from "../../utils/token";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,12 +27,12 @@ function App() {
     isDay: true,
   });
 
+  const [userData, setUserData] = useState({ email: "", password: "" });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-
-  
 
   const handleDeleteClick = (card) => {
     //set active modal to delete
@@ -52,6 +57,14 @@ function App() {
     setActiveModal("");
   };
 
+  const handleRegisterModal = ({ name, avatar, email, password }) => {
+    setActiveModal("register");
+  };
+
+  const handleLoginModal = ({ email, password }) => {
+    setActiveModal("login");
+  };
+
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     return api.addNewClothes({ name, imageUrl, weather }).then((newItem) => {
       setClothingItems((prevItems) => [newItem, ...prevItems]);
@@ -70,6 +83,56 @@ function App() {
       })
       .catch((err) => console.error(err));
   };
+
+  const handleRegistration = ({ name, avatar, email, password }) => {
+    if (!email || !password || !name || !avatar) {
+      return;
+    }
+    register(name, avatar, email, password)
+      .then((data) => {
+        if (data.jwt) {
+          setToken(data.jwt);
+          setIsLoggedIn(true);
+          setUserData(data.user);
+          localStorage.setItem("jwt", data.jwt);
+        }
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
+  const handleLogin = ({ email, password }) => {
+    if (!email || !password) {
+      return;
+    }
+    // auth
+    authorize(email, password)
+      .then((data) => {
+        if (data.jwt) {
+          setToken(data.jwt);
+          setIsLoggedIn(true);
+          setUserData(data.user);
+          localStorage.setItem("jwt", data.jwt);
+        }
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
+  useEffect(() => {
+    const jwt = getToken(); // try to get token form localStorage
+    if (!jwt) {
+      return;
+    }
+    checkToken(jwt)
+      .then((data) => {
+        const { email, password } = data;
+
+        setIsLoggedIn(true);
+        setUserData({ email, password }); // store user data in state
+      })
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -99,7 +162,12 @@ function App() {
     >
       <div className="page">
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData}  />
+          <Header
+            handleAddClick={handleAddClick}
+            weatherData={weatherData}
+            handleRegisterModal={handleRegisterModal}
+            handleLoginModal={handleLoginModal}
+          />
           <Routes>
             <Route
               path="/"
@@ -114,12 +182,14 @@ function App() {
             <Route
               path="/profile"
               element={
-                <Profile
-                  weatherData={weatherData}
-                  clothingItems={clothingItems}
-                  onCardClick={handleCardClick}
-                  handleAddClick={handleAddClick}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Profile
+                    weatherData={weatherData}
+                    clothingItems={clothingItems}
+                    onCardClick={handleCardClick}
+                    handleAddClick={handleAddClick}
+                  />
+                </ProtectedRoute>
               }
             />
           </Routes>
@@ -129,6 +199,16 @@ function App() {
           onClose={closeActiveModal}
           onAddItemModalSubmit={handleAddItemModalSubmit}
         />
+        <RegisterModal
+          isOpen={activeModal === "register"}
+          onClose={closeActiveModal}
+          handleRegistration={handleRegistration}
+        />
+        <LoginModal
+          isOpen={activeModal === "login"}
+          onClose={closeActiveModal}
+          handleLogin={handleLogin}
+        />
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
@@ -137,7 +217,7 @@ function App() {
           handleDeleteClick={handleDeleteClick}
         />
         <DeletionModal
-          isOpen={activeModal === "delete"} //true or false
+          isOpen={activeModal === "delete"} // true or false
           activeModal={activeModal}
           onSubmit={(e) => {
             e.preventDefault();
