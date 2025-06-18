@@ -24,21 +24,28 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
 
   return (
     <ModalWithForm
-      title="login"
+      title="Log in"
+      titleClass="modal__title"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={onLogin}
     >
-      <label htmlFor="email">Email:</label>
+      <label htmlFor="email" className="email__field">
+        Email
+      </label>
       <input
+        className="modal__input"
         id="email"
         name="email"
         type="email"
         value={data.email}
         onChange={handleChange}
       />
-      <label htmlFor="password">Password:</label>
+      <label htmlFor="password" className="password__field">
+        Password
+      </label>
       <input
+        className="modal__input"
         id="password"
         name="password"
         type="password"
@@ -49,7 +56,7 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
         Log in
       </button>
       <button type="button" className="modal__submit">
-        or Register
+        or Sign Up
       </button>
     </ModalWithForm>
   );

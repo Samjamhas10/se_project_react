@@ -59,7 +59,7 @@ function App() {
   };
 
   const handleRegisterModal = ({ name, avatar, email, password }) => {
-    setActiveModal("register");
+    setActiveModal("signup");
   };
 
   const handleLoginModal = ({ email, password }) => {
@@ -71,6 +71,32 @@ function App() {
       setClothingItems((prevItems) => [newItem, ...prevItems]);
       closeActiveModal();
     });
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        api
+          // the first argument is the card's id
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          // the first argument is the card's id
+          .removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   const handleDeleteItem = (itemToDelete) => {
@@ -106,7 +132,6 @@ function App() {
     if (!email || !password) {
       return;
     }
-    // auth
     authorize(email, password)
       .then((data) => {
         if (data.jwt) {
@@ -186,6 +211,7 @@ function App() {
                     weatherData={weatherData}
                     clothingItems={clothingItems}
                     onCardClick={handleCardClick}
+                    // onCardLike={onCardLike}
                   />
                 }
               />
@@ -210,7 +236,7 @@ function App() {
             onAddItemModalSubmit={handleAddItemModalSubmit}
           />
           <RegisterModal
-            isOpen={activeModal === "register"}
+            isOpen={activeModal === "signup"}
             onClose={closeActiveModal}
             handleRegistration={handleRegistration}
           />
@@ -225,6 +251,7 @@ function App() {
             onClose={closeActiveModal}
             onDelete={handleDeleteItem}
             handleDeleteClick={handleDeleteClick}
+            onClick={handleCardLike}
           />
           <DeletionModal
             isOpen={activeModal === "delete"} // true or false
