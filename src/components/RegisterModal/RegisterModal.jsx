@@ -7,11 +7,14 @@ function RegisterModal({ handleRegistration, isOpen, onClose }) {
     email: "",
     password: "",
     name: "",
-    avatarUrl: "",
+    avatar: "",
   });
+
+  console.log(data);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log("Input changed:", name, value);
     setData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -61,17 +64,19 @@ function RegisterModal({ handleRegistration, isOpen, onClose }) {
         name="name"
         type="text"
         placeholder="Name"
+        required
         value={data.name}
         onChange={handleChange}
       />
-      <label htmlFor="avatarUrl">Avatar URL*</label>
+      <label htmlFor="avatar">Avatar URL*</label>
       <input
         className="modal__input"
-        id="avatarUrl"
-        name="avatarUrl"
+        id="avatar"
+        name="avatar"
         type="url"
         placeholder="Avatar URL"
-        value={data.avatarUrl}
+        required
+        value={data.avatar}
         onChange={handleChange}
       />
       <button type="submit" className="modal__submit">

@@ -1,14 +1,14 @@
 export const BASE_URL = "http://localhost:3001"; // where the backend is running
 
 // this function sends a request to create a new user
-export const register = (name, avatar, email, password) => {
+export const register = (email, password, name, avatar) => {
   // send a request to the /signup endpoint
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, avatar, email, password }),
+    body: JSON.stringify({ email, password, name, avatar }),
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });

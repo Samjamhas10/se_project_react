@@ -11,6 +11,7 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log("Input changed:", name, value);
     setData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -38,6 +39,7 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
         id="email"
         name="email"
         type="email"
+        placeholder="Email"
         value={data.email}
         onChange={handleChange}
       />
@@ -49,6 +51,7 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
         id="password"
         name="password"
         type="password"
+        placeholder="Password"
         value={data.password}
         onChange={handleChange}
       />
