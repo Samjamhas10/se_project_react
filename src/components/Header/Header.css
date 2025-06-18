@@ -39,7 +39,8 @@
 .header__user-container {
   display: flex;
   align-items: center;
-  gap: 12px;
+  /* gap: 12px; */
+  gap: 20px;
 }
 
 .header__username {
@@ -56,6 +57,27 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.header__register-btn {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header__login-btn {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {

@@ -2,12 +2,16 @@ import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 
-function RegisterModal({ handleRegistration, isOpen, onClose }) {
+function RegisterModal({
+  handleRegistration,
+  isOpen,
+  onClose,
+}) {
   const [data, setData] = useState({
     email: "",
     password: "",
     name: "",
-    avatar: "",
+    avatarUrl: "",
   });
 
   const handleChange = (e) => {
@@ -24,8 +28,15 @@ function RegisterModal({ handleRegistration, isOpen, onClose }) {
   };
 
   return (
-    <ModalWithForm title="register" isOpen={isOpen} onClose={onClose}>
-      <label htmlFor="email">Email:</label>
+    <ModalWithForm
+      title="register"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={onRegistration}
+    >
+      <label htmlFor="email" className="register-modal__label">
+        Email:
+      </label>
       <input
         id="email"
         name="email"
@@ -54,7 +65,7 @@ function RegisterModal({ handleRegistration, isOpen, onClose }) {
         id="avatarUrl"
         name="avatarUrl"
         type="url"
-        value={data.avatarurl}
+        value={data.avatarUrl}
         onChange={handleChange}
       />
     </ModalWithForm>

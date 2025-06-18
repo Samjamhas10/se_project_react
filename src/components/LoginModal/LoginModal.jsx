@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import CurrentUserContext from "../../context/CurrentUserContext";
 import "./LoginModal.css";
 
 function LoginModal({ handleLogin, onClose, isOpen }) {
@@ -26,6 +27,7 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
       title="login"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={onLogin}
     >
       <label htmlFor="email">Email:</label>
       <input
