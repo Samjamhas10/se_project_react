@@ -1,9 +1,8 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import CurrentUserContext from "../../context/CurrentUserContext";
 import "./LoginModal.css";
 
-function LoginModal({ handleLogin, onClose, isOpen }) {
+function LoginModal({ handleLogin, onClose, isOpen, onSubmit }) {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -20,6 +19,7 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
 
   const onLogin = (event) => {
     event.preventDefault();
+    console.log("onLogin called", data);
     handleLogin(data);
   };
 
@@ -55,12 +55,14 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
         value={data.password}
         onChange={handleChange}
       />
-      <button type="submit" className="modal__submit">
-        Log in
-      </button>
-      <button type="button" className="modal__submit">
-        or Sign Up
-      </button>
+      <div className="login__buttons">
+        <button type="submit" className="modal__submit modal__submit-login">
+          Log in
+        </button>
+        <button type="button" className="modal__submit modal__submit-signup">
+          or Sign Up
+        </button>
+      </div>
     </ModalWithForm>
   );
 }

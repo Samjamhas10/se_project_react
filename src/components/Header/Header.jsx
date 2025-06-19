@@ -5,8 +5,6 @@ import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import RegisterModal from "../RegisterModal/RegisterModal";
-import LoginModal from "../LoginModal/LoginModal";
 
 function Header({
   handleAddClick,
@@ -66,58 +64,48 @@ function Header({
             >
               + Add clothes
             </li>
-            {/* <li>
-              <ToggleSwitch className="header__toggle-switch" />
-            </li> */}
           </ul>
         </nav>
       )}
       <div className="header__user-container">
         <ToggleSwitch className="header__toggle-switch" />
-        <RegisterModal className="header__register-modal" />
-        <button
-          type="button"
-          onClick={handleRegisterModal}
-          className="header__register-btn"
-        >
-          Sign up
-        </button>
-        <LoginModal className="header__login-modal" />
+
         {!isLoggedIn ? (
-          <button
-            type="button"
-            onClick={handleLoginModal}
-            className="header__login-btn"
-          >
-            Log in
-          </button>
+          <>
+            <button
+              type="button"
+              onClick={handleRegisterModal}
+              className="header__register-btn"
+            >
+              Sign up
+            </button>
+            <button
+              type="button"
+              onClick={handleLoginModal}
+              className="header__login-btn"
+            >
+              Log in
+            </button>
+          </>
         ) : (
-          <div>
+          <>
             <button
               onClick={handleAddClick}
               className="header__add-clothes-btn"
             >
               + Add clothes
             </button>
-            {!currentUser ? (
-              <button
-                type="button"
-                onClick={handleLoginModal}
-                className="header__login-btn"
-              >
-                Log in
-              </button>
-            ) : (
-              <Link to="/profile" className="header__link ">
+            {currentUser && (
+              <Link to="/profile" className="header__link">
                 <p className="header__username">{currentUser.name}</p>
                 <img
-                  src={currentUser.avatar}
+                  src={currentUser.avatar || avatar}
                   alt={currentUser.name}
                   className="header__avatar"
                 />
               </Link>
             )}
-          </div>
+          </>
         )}
       </div>
     </header>

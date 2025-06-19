@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 // import utils and API
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
-import { setToken, getToken } from "../../utils/token";
+import { storeToken, getToken } from "../../utils/token";
 import { register, authorize, checkToken } from "../../utils/auth";
 import api from "../../utils/api";
 
@@ -38,7 +38,7 @@ function App() {
   });
 
   // current logged-in user state variable/setting state
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({ email: "", password: "" });
 
   // current state tracking whether user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -74,24 +74,17 @@ function App() {
     setActiveModal("");
   };
 
-  const handleRegisterModal = ({ email, password, name, avatar }) => {
-    const data = { email, password, name, avatar };
-    setActiveModal("signup");
-    handleRegistration(data);
-    console.log("Registration data:", data);
-  };
-
-  const handleLoginModal = ({ email, password }) => {
-    setActiveModal("login");
-  };
-
   // API handlers
   // Add clothing item to database
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    return api.addNewClothes({ name, imageUrl, weather }).then((newItem) => {
-      setClothingItems((prevItems) => [newItem, ...prevItems]);
-      closeActiveModal();
-    });
+    const token = localStorage.getItem("jwt");
+    return api
+      .addNewClothes({ name, imageUrl, weather }, token)
+      .then((newItem) => {
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        closeActiveModal();
+      })
+      .catch((err) => console.error(err));
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -117,13 +110,17 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.error(err);
+            alert("Could not add item. Please try again");
+          });
   };
 
   // delete clothing item
   const handleDeleteItem = (itemToDelete) => {
-    api
-      .deleteItems(itemToDelete._id)
+    const token = localStorage.getItem("jwt");
+    return api
+      .deleteItems(itemToDelete._id, token)
       .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== itemToDelete._id)
@@ -140,13 +137,8 @@ function App() {
     }
     register(email, password, name, avatar)
       .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt);
-          setIsLoggedIn(true);
-          setCurrentUser(data.user);
-          localStorage.setItem("jwt", data.jwt);
-        }
         closeActiveModal();
+        return handleLogin({ email, password });
       })
       .catch(console.error);
   };
@@ -154,19 +146,37 @@ function App() {
   // handle user login
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
-      return;
+      return Promise.reject();
     }
     authorize(email, password)
       .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt);
+        console.log(data);
+        // Check token
+        if (data.token) {
+          // stores the token in local storage
+          storeToken(data.token);
+          // sets the the isLoggedIn state to be true, which we can then use to conditionally render different parts of our app
           setIsLoggedIn(true);
-          setCurrentUser(data.user);
-          localStorage.setItem("jwt", data.jwt);
+          // we want to store the current user's info (name, avatar, etc..) in the current user state variable.
+          // However, we currently don't have access to that info. How to get it?
+          console.log("Login response data:", data);
+          return checkToken(data.token);
         }
+        throw new Error("No token returned");
+      })
+      .then((userData) => {
+        setCurrentUser(userData); // set real user info here
         closeActiveModal();
       })
       .catch(console.error);
+  };
+
+  const openRegisterModal = () => {
+    setActiveModal("signup");
+  };
+
+  const openLoginModal = () => {
+    setActiveModal("login");
   };
 
   // handle logout
@@ -184,12 +194,13 @@ function App() {
     }
     checkToken(jwt)
       .then((data) => {
-        const { email, password } = data;
         setIsLoggedIn(true);
-        setCurrentUser(data.user);
+        setCurrentUser(data);
       })
       .catch(console.error);
   }, []);
+
+  console.log(isLoggedIn);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -224,8 +235,8 @@ function App() {
               <Header
                 handleAddClick={handleAddClick}
                 weatherData={weatherData}
-                handleRegisterModal={handleRegisterModal}
-                handleLoginModal={handleLoginModal}
+                handleRegisterModal={openRegisterModal}
+                handleLoginModal={openLoginModal}
                 isLoggedIn={isLoggedIn}
                 currentUser={currentUser}
               />
@@ -276,9 +287,10 @@ function App() {
               activeModal={activeModal}
               card={selectedCard}
               onClose={closeActiveModal}
-              onDelete={handleDeleteItem}
+              // onDelete={handleDeleteItem}
               handleDeleteClick={handleDeleteClick}
               onClick={handleCardLike}
+              // isOwn={isOwn}
             />
             <DeletionModal
               isOpen={activeModal === "delete"} // true or false

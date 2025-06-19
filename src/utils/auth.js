@@ -38,7 +38,7 @@ export const checkToken = (token) => {
     },
   }).then((res) => {
     if (res.ok) {
-      return res.json(); // if token is valid, return user info
+      return res.json(); // if token is valid, return user infoit
     }
     return Promise.reject(`Error: ${res.status}`);
   });
