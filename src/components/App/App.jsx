@@ -181,8 +181,8 @@ function App() {
 
   // handle logout
   const handleSignOut = () => {
-    setCurrentUser({});
     setIsLoggedIn(false);
+    setCurrentUser({});
     localStorage.removeItem("jwt"); // remove the token from localStorage
     console.log("User logged out successfully");
   };

@@ -13,11 +13,12 @@ function getItems() {
     .then((items) => items.reverse());
 }
 
-function addNewClothes(data) {
+function addNewClothes(data, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`
     },
     body: JSON.stringify(data),
   }).then(checkResponse);
