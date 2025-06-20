@@ -33,7 +33,7 @@ function deleteItems(item_id) {
   }).then(checkResponse);
 }
 
-function updateProfile(name, avatar) {
+function updateProfile(name, avatar, token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {

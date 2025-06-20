@@ -3,7 +3,7 @@ import CurrentUserContext from "../../context/CurrentUserContext";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./EditProfileModal.css";
 
-function EditProfileModal({ handleProfile, isOpen, onClose }) {
+function EditProfileModal({ handleProfile, isOpen, onClose, onChangeProfile }) {
   const [data, setData] = useState({
     name: "",
     avatar: "",
@@ -19,6 +19,7 @@ function EditProfileModal({ handleProfile, isOpen, onClose }) {
       });
     }
   }, [currentUser]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({

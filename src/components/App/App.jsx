@@ -117,7 +117,7 @@ function App() {
             alert("Could not like item. Please try again");
           });
   };
-  
+
   // delete clothing item
   const handleDeleteItem = (itemToDelete) => {
     const token = localStorage.getItem("jwt");
@@ -187,8 +187,10 @@ function App() {
   };
 
   const handleProfile = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+    console.log("Token", token);
     api
-      .updateProfile(name, avatar)
+      .updateProfile(name, avatar, token)
       .then((updatedUser) => {
         // setIsLoggedIn(true);
         setCurrentUser(updatedUser);
@@ -281,7 +283,7 @@ function App() {
                         onCardLike={handleCardLike}
                         handleAddClick={handleAddClick}
                         onSignOut={handleSignOut}
-                        onChangeProfile={handleProfile}
+                        onChangeProfile={openProfileModal}
                       />
                     </ProtectedRoute>
                   }
@@ -315,7 +317,7 @@ function App() {
             <EditProfileModal
               isOpen={activeModal === "edit-profile"}
               onClose={closeActiveModal}
-              handleProfile={handleProfile}
+              onChangeProfile={openProfileModal}
             ></EditProfileModal>
             <DeletionModal
               isOpen={activeModal === "delete"} // true or false
