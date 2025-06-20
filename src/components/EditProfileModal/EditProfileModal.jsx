@@ -9,11 +9,16 @@ function EditProfileModal({ handleProfile, isOpen, onClose }) {
     avatar: "",
   });
 
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-
   const currentUser = useContext(CurrentUserContext);
 
+  useEffect(() => {
+    if (currentUser) {
+      setData({
+        name: currentUser.name || "",
+        avatar: currentUser.avatar || "",
+      });
+    }
+  }, [currentUser]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({

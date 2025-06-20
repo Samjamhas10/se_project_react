@@ -36,10 +36,7 @@ function ItemModal({ activeModal, onClose, card, handleDeleteClick }) {
             <p className="item-modal__weather">Weather: {card.weather}</p>
           </div>
           {isOwn && (
-            <button
-              className="modal__delete-button"
-              onClick={handleDeleteClick}
-            >
+            <button className="modal__delete-btn" onClick={handleDeleteClick}>
               Delete item
             </button>
           )}

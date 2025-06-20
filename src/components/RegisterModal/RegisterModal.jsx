@@ -10,8 +10,6 @@ function RegisterModal({ handleRegistration, isOpen, onClose }) {
     avatar: "",
   });
 
-  console.log(data);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log("Input changed:", name, value);

@@ -27,8 +27,11 @@
   border: 1px solid #0000004d;
 }
 
+.card__like-btn {
+  background-color: red;
+}
+
 @media screen and (max-width: 600px) {
-  
 }
 
 @media screen and (max-width: 500px) {

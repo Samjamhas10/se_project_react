@@ -18,7 +18,7 @@ function addNewClothes(data, token) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
   }).then(checkResponse);
@@ -33,10 +33,47 @@ function deleteItems(item_id) {
   }).then(checkResponse);
 }
 
+function updateProfile(name, avatar) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
+
+function addCardLike(item_id, token) {
+  return fetch(`${baseUrl}/items/${item_id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+function removeCardLike(item_id, token) {
+  return fetch(
+    `${baseUrl}/items/${item_id}/likes`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "appalication/json",
+        authorization: `Bearer ${token}`,
+      },
+    }.then(checkResponse)
+  );
+}
+
 const api = {
   getItems,
   addNewClothes,
   deleteItems,
+  updateProfile,
+  addCardLike,
+  removeCardLike,
 };
 
 export default api;

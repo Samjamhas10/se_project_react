@@ -114,10 +114,10 @@ function App() {
           })
           .catch((err) => {
             console.error(err);
-            alert("Could not add item. Please try again");
+            alert("Could not like item. Please try again");
           });
   };
-
+  
   // delete clothing item
   const handleDeleteItem = (itemToDelete) => {
     const token = localStorage.getItem("jwt");
@@ -152,6 +152,7 @@ function App() {
     }
     authorize(email, password)
       .then((data) => {
+        // data = {token: 01982f2983fj283fj3}
         console.log(data);
         // Check token
         if (data.token) {
@@ -181,11 +182,20 @@ function App() {
     setActiveModal("login");
   };
 
-  const openChangeProfileModal = () => {
+  const openProfileModal = () => {
     setActiveModal("edit-profile");
   };
 
-  const handleProfile = ({ name, password }) => {};
+  const handleProfile = ({ name, avatar }) => {
+    api
+      .updateProfile(name, avatar)
+      .then((updatedUser) => {
+        // setIsLoggedIn(true);
+        setCurrentUser(updatedUser);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
 
   // handle logout
   const handleSignOut = () => {
@@ -256,7 +266,7 @@ function App() {
                       weatherData={weatherData}
                       clothingItems={clothingItems}
                       onCardClick={handleCardClick}
-                      // onCardLike={onCardLike}
+                      onCardLike={handleCardLike}
                     />
                   }
                 />
@@ -268,8 +278,10 @@ function App() {
                         weatherData={weatherData}
                         clothingItems={clothingItems}
                         onCardClick={handleCardClick}
+                        onCardLike={handleCardLike}
                         handleAddClick={handleAddClick}
                         onSignOut={handleSignOut}
+                        onChangeProfile={handleProfile}
                       />
                     </ProtectedRoute>
                   }
