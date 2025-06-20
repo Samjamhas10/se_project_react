@@ -19,6 +19,7 @@ import DeletionModal from "../DeletionModal/DeletionModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import Footer from "../Footer/Footer";
 
 // import contexts
@@ -89,6 +90,7 @@ function App() {
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
+    console.log("is liked");
     // Check if this card is not currently liked
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
@@ -178,6 +180,12 @@ function App() {
   const openLoginModal = () => {
     setActiveModal("login");
   };
+
+  const openChangeProfileModal = () => {
+    setActiveModal("edit-profile");
+  };
+
+  const handleProfile = ({ name, password }) => {};
 
   // handle logout
   const handleSignOut = () => {
@@ -292,6 +300,11 @@ function App() {
               onClick={handleCardLike}
               // isOwn={isOwn}
             />
+            <EditProfileModal
+              isOpen={activeModal === "edit-profile"}
+              onClose={closeActiveModal}
+              handleProfile={handleProfile}
+            ></EditProfileModal>
             <DeletionModal
               isOpen={activeModal === "delete"} // true or false
               activeModal={activeModal}

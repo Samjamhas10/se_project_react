@@ -1,7 +1,68 @@
-import "EditProfileModal.css";
+import { useState, useEffect, useContext } from "react";
+import CurrentUserContext from "../../context/CurrentUserContext";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import "./EditProfileModal.css";
 
-function EditProfileModal() {
-    
+function EditProfileModal({ handleProfile, isOpen, onClose }) {
+  const [data, setData] = useState({
+    name: "",
+    avatar: "",
+  });
+
+  const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState("");
+
+  const currentUser = useContext(CurrentUserContext);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const onProfile = (event) => {
+    event.preventDefault();
+    handleProfile(data);
+  };
+
+  return (
+    <ModalWithForm
+      title="Change profile data"
+      titleClass="modal__title"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={onProfile}
+    >
+      <label htmlFor="name" className="profile__data">
+        Name*
+      </label>
+      <input
+        className="modal__input"
+        id="name"
+        name="name"
+        type="text"
+        placeholder=""
+        value={data.name}
+        onChange={handleChange}
+      />
+      <label htmlFor="avatar">Avatar URL*</label>
+      <input
+        className="modal__input"
+        id="avatar"
+        name="avatar"
+        type="url"
+        placeholder="Avatar URL"
+        required
+        value={data.avatar}
+        onChange={handleChange}
+      />
+      <button type="submit" className="modal__submit">
+        Save changes
+      </button>
+    </ModalWithForm>
+  );
 }
 
 export default EditProfileModal;

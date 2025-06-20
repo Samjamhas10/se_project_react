@@ -2,7 +2,7 @@ import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
-function LoginModal({ handleLogin, onClose, isOpen, onSubmit }) {
+function LoginModal({ handleLogin, onClose, isOpen }) {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -10,7 +10,6 @@ function LoginModal({ handleLogin, onClose, isOpen, onSubmit }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("Input changed:", name, value);
     setData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -19,7 +18,6 @@ function LoginModal({ handleLogin, onClose, isOpen, onSubmit }) {
 
   const onLogin = (event) => {
     event.preventDefault();
-    console.log("onLogin called", data);
     handleLogin(data);
   };
 

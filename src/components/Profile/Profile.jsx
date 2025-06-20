@@ -10,6 +10,7 @@ function Profile({
   clothingItems,
   handleAddClick,
   onSignOut,
+  onChangeProfile,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -21,7 +22,7 @@ function Profile({
     <div className="profile">
       <section className="profile__sidebar">
         <SideBar />
-        <button>Change profile data</button>
+        <button onClick={onChangeProfile}>Change profile data</button>
         <button onClick={onSignOut}>Log out</button>
       </section>
       <section className="profile__clothes-section">
