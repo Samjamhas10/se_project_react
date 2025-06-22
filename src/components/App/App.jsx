@@ -91,9 +91,11 @@ function App() {
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
     console.log("is liked");
+    //isLiked -> !isLiked
     // Check if this card is not currently liked
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
+        //
         api
           // the first argument is the card's id
           .addCardLike(id, token)
@@ -165,7 +167,6 @@ function App() {
           console.log("Login response data:", data);
           return checkToken(data.token);
         }
-        throw new Error("No token returned");
       })
       .then((userData) => {
         setCurrentUser(userData); // set real user info here
