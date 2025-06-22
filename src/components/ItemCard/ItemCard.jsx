@@ -9,13 +9,15 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
     onCardClick(item);
   };
 
+  const isLiked = item.likes.some((id) => id === currentUser._id);
+
   const handleLike = () => {
-    onCardLike(item);
+    console.log(isLiked);
+    onCardLike({ id: item._id, isLiked });
   };
 
   // Check if the item was liked by the current user
   // The likes array should be an array of ids
-  const isLiked = item.likes.some((id) => id === currentUser._id);
 
   // Create a variable which you then set in `className` for the like button
   const itemLikeButtonClassName = `card__like-btn ${
@@ -25,15 +27,14 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
   return (
     <li className="card">
       <h1 className="card__name">{item.name}</h1>
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <button
           type="button"
           className={itemLikeButtonClassName}
-          onClick={onCardLike}
+          onClick={handleLike}
         ></button>
       )}
       <img
-        onCardLike={handleLike}
         onClick={handleCardClick}
         className="card__image"
         src={item.imageUrl}

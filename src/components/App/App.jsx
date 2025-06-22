@@ -270,6 +270,7 @@ function App() {
                       clothingItems={clothingItems}
                       onCardClick={handleCardClick}
                       onCardLike={handleCardLike}
+                      isLoggedIn={isLoggedIn}
                     />
                   }
                 />

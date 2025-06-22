@@ -55,16 +55,13 @@ function addCardLike(item_id, token) {
 }
 
 function removeCardLike(item_id, token) {
-  return fetch(
-    `${baseUrl}/items/${item_id}/likes`,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "appalication/json",
-        authorization: `Bearer ${token}`,
-      },
-    }.then(checkResponse)
-  );
+  return fetch(`${baseUrl}/items/${item_id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "appalication/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
 }
 
 const api = {
