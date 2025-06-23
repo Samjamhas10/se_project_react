@@ -121,13 +121,14 @@ function App() {
   };
 
   // delete clothing item
-  const handleDeleteItem = (itemToDelete) => {
+  const handleDeleteItem = (item_id) => {
     const token = localStorage.getItem("jwt");
+    // console.log("Item to delete:", itemToDelete);
     return api
-      .deleteItems(itemToDelete._id, token)
+      .deleteItems(item_id, token)
       .then(() => {
         setClothingItems((prevItems) =>
-          prevItems.filter((item) => item._id !== itemToDelete._id)
+          prevItems.filter((item) => item._id !== item_id)
         );
         closeActiveModal();
       })
@@ -286,6 +287,8 @@ function App() {
                         handleAddClick={handleAddClick}
                         onSignOut={handleSignOut}
                         onChangeProfile={openProfileModal}
+                        isLoggedIn={isLoggedIn}
+                        handleProfile={handleProfile}
                       />
                     </ProtectedRoute>
                   }
@@ -311,22 +314,21 @@ function App() {
               activeModal={activeModal}
               card={selectedCard}
               onClose={closeActiveModal}
-              // onDelete={handleDeleteItem}
               handleDeleteClick={handleDeleteClick}
               onClick={handleCardLike}
-              // isOwn={isOwn}
             />
             <EditProfileModal
               isOpen={activeModal === "edit-profile"}
               onClose={closeActiveModal}
               onChangeProfile={openProfileModal}
+              handleProfile={handleProfile}
             ></EditProfileModal>
             <DeletionModal
               isOpen={activeModal === "delete"} // true or false
               activeModal={activeModal}
               onSubmit={(e) => {
                 e.preventDefault();
-                handleDeleteItem(selectedCard);
+                handleDeleteItem(selectedCard.id);
               }}
               onClose={closeActiveModal}
             />

@@ -24,11 +24,12 @@ function addNewClothes(data, token) {
   }).then(checkResponse);
 }
 
-function deleteItems(item_id) {
+function deleteItems(item_id, token) {
   return fetch(`${baseUrl}/items/${item_id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 }

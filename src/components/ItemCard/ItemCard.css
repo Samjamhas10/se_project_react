@@ -28,7 +28,23 @@
 }
 
 .card__like-btn {
-  background-color: red;
+  background: url(../../assets/like-btn.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  width: 20px;
+  height: 18px;
+  position: absolute;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  top: 20px;
+  right: 20px;
+}
+
+.card__like-btn_active {
+  background: url(../../assets/liked-btn.png);
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 600px) {
