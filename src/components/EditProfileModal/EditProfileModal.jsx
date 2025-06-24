@@ -49,7 +49,7 @@ function EditProfileModal({ handleProfile, isOpen, onClose, onChangeProfile }) {
         id="name"
         name="name"
         type="text"
-        placeholder=""
+        placeholder="Name"
         value={data.name}
         onChange={handleChange}
       />
@@ -64,7 +64,7 @@ function EditProfileModal({ handleProfile, isOpen, onClose, onChangeProfile }) {
         value={data.avatar}
         onChange={handleChange}
       />
-      <button type="submit" className="modal__submit">
+      <button type="submit" className="modal__submit modal__submit-profile">
         Save changes
       </button>
     </ModalWithForm>

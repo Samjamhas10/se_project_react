@@ -91,40 +91,39 @@ function App() {
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
-    console.log("is liked");
+
     //isLiked -> !isLiked
     // Check if this card is not currently liked
-    !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        //
-        api
-          // the first argument is the card's id
-          .addCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
-          // the first argument is the card's id
-          .removeCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => {
-            console.error(err);
-            alert("Could not like item. Please try again");
-          });
+    if (!isLiked) {
+      api
+        // the first argument is the card's id
+        .addCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    } else {
+      // if not, send a request to remove the user's id from the card's likes array
+      api
+        // the first argument is the card's id
+        .removeCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Could not like item. Please try again");
+        });
+    }
   };
 
   // delete clothing item
   const handleDeleteItem = (item_id) => {
     const token = localStorage.getItem("jwt");
-    // console.log("Item to delete:", itemToDelete);
     return api
       .deleteItems(item_id, token)
       .then(() => {
@@ -157,17 +156,12 @@ function App() {
     }
     authorize(email, password)
       .then((data) => {
-        // data = {token: 01982f2983fj283fj3}
-        console.log(data);
         // Check token
         if (data.token) {
           // stores the token in local storage
           storeToken(data.token);
           // sets the the isLoggedIn state to be true, which we can then use to conditionally render different parts of our app
           setIsLoggedIn(true);
-          // we want to store the current user's info (name, avatar, etc..) in the current user state variable.
-          // However, we currently don't have access to that info. How to get it?
-          console.log("Login response data:", data);
           return checkToken(data.token);
         }
       })
@@ -192,7 +186,6 @@ function App() {
 
   const handleProfile = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
-    console.log("Token", token);
     api
       .updateProfile(name, avatar, token)
       .then((updatedUser) => {
@@ -208,7 +201,6 @@ function App() {
     setIsLoggedIn(false);
     setCurrentUser({});
     localStorage.removeItem("jwt"); // remove the token from localStorage
-    console.log("User logged out successfully");
   };
 
   useEffect(() => {
@@ -223,8 +215,6 @@ function App() {
       })
       .catch(console.error);
   }, []);
-
-  console.log(isLoggedIn);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -332,9 +322,9 @@ function App() {
                 e.preventDefault();
                 handleDeleteItem(selectedCard._id);
               }}
-              onClick={handleDeleteItem}
+              onClick={() => handleDeleteClick(card)}
               onClose={closeActiveModal}
-            />
+            ></DeletionModal>
             <Footer />
           </div>
         </div>

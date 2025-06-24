@@ -10,7 +10,7 @@
 
 .header__avatar {
   height: 40px;
-  border-radius: 10px;
+  border-radius: 50%;
 }
 
 .mobile-menu {
@@ -31,7 +31,6 @@
 }
 
 .header__add-clothes-btn {
-  margin: 0 20px 0 auto;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -39,12 +38,13 @@
   border: none;
   background: none;
   cursor: pointer;
+  padding: 0;
 }
 
 .header__user-container {
   display: flex;
   align-items: center;
-  /* gap: 12px; */
+
   gap: 20px;
 }
 

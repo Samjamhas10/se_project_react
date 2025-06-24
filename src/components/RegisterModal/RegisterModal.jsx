@@ -12,7 +12,6 @@ function RegisterModal({ handleRegistration, isOpen, onClose }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("Input changed:", name, value);
     setData((prevData) => ({
       ...prevData,
       [name]: value,
