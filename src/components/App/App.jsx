@@ -50,6 +50,7 @@ function App() {
 
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [isDeleting, setIsDeleting] = useState(null);
 
   const handleDeleteClick = (card) => {
     //set active modal to delete
@@ -127,6 +128,7 @@ function App() {
     return api
       .deleteItems(item_id, token)
       .then(() => {
+        setIsDeleting(item_id);
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== item_id)
         );
@@ -328,8 +330,9 @@ function App() {
               activeModal={activeModal}
               onSubmit={(e) => {
                 e.preventDefault();
-                handleDeleteItem(selectedCard.id);
+                handleDeleteItem(selectedCard._id);
               }}
+              onClick={handleDeleteItem}
               onClose={closeActiveModal}
             />
             <Footer />

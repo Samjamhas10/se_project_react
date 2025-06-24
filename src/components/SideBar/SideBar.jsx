@@ -9,12 +9,12 @@ function SideBar({ onSignOut, onChangeProfile }) {
   return (
     <div className="sidebar">
       <div className="sidebar__options">
-        <p className="sidebar__username">{currentUser.name}</p>
         <img
           src={currentUser.avatar || avatar}
           alt={currentUser.name}
           className="sidebar__avatar"
         />
+        <p className="sidebar__username">{currentUser.name}</p>
         {/* <p className="sidebar__username">Terrence Tegegne</p>
         <p className="sidebar__data">Change profile data</p>
         <p className="sidebar__sign-out">Log out</p> */}

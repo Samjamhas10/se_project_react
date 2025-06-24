@@ -4,9 +4,16 @@
   align-items: center;
 }
 
+.sidebar__options {
+  display: flex;
+  flex-direction: row;
+  
+}
+
 .sidebar__avatar {
-  /* width: 56px; */
   height: 56px;
+  border: 1px;
+  border-radius: 20px;
 }
 
 .sidebar__username {

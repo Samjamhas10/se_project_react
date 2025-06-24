@@ -6,6 +6,7 @@ function DeletionModal({
   onClose,
   onSubmit,
   isOpen, //true
+  handleDeleteItem,
 }) {
   if (activeModal !== "delete") {
     return null;
@@ -22,7 +23,11 @@ function DeletionModal({
       contentClass="modal__content_type_delete"
     >
       <div className="modal__delete-content">
-        <button type="submit" className="modal__submit-delete">
+        <button
+          type="submit"
+          className="modal__submit-delete"
+          onClick={handleDeleteItem}
+        >
           Yes, delete item
         </button>
         <button type="button" className="btn-cancel" onClick={onClose}>

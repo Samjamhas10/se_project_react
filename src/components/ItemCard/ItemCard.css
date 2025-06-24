@@ -5,10 +5,15 @@
   justify-content: center;
 }
 
-.card__name {
+.card__info {
   position: absolute;
-  top: 15px;
-  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.card__name {
+  margin-top: 15px;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
@@ -34,12 +39,10 @@
   background-color: transparent;
   width: 20px;
   height: 18px;
-  position: absolute;
   padding: 0;
+  margin-top: 20px;
   border: none;
   cursor: pointer;
-  top: 20px;
-  right: 20px;
 }
 
 .card__like-btn_active {
