@@ -1,5 +1,7 @@
 export const BASE_URL = "http://localhost:3001"; // where the backend is running
 
+import { checkResponse } from "./api";
+
 // this function sends a request to create a new user
 export const register = (email, password, name, avatar) => {
   // send a request to the /signup endpoint
@@ -9,9 +11,7 @@ export const register = (email, password, name, avatar) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password, name, avatar }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
 
 // this function logs the user in with email and password
@@ -22,10 +22,7 @@ export const authorize = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }), // convert email and password to JSON
-  }).then((res) => {
-    // return response if successful, otherwise reject the promise/ send an error
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
 
 // this function checks if the token is valid and returns user info
@@ -36,10 +33,5 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json(); // if token is valid, return user infoit
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
