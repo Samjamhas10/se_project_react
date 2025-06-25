@@ -15,11 +15,11 @@ function Profile({
   isLoggedIn,
   handleProfile,
 }) {
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
-  const userItems = clothingItems.filter(
-    (item) => item.owner === currentUser._id
-  );
+  // const userItems = clothingItems.filter(
+  //   (item) => item.owner === currentUser._id
+  // ); // don't need it because you do everything inside clothingSection
 
   return (
     <div className="profile">
@@ -38,12 +38,11 @@ function Profile({
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
-          userClothingItems={userItems}
+          // userClothingItems={userItems}
           onCardLike={onCardLike}
           isLoggedIn={isLoggedIn}
           handleProfile={handleProfile}
         />
-        
       </section>
     </div>
   );

@@ -86,7 +86,7 @@ function App() {
         setClothingItems((prevItems) => [newItem, ...prevItems]);
         closeActiveModal();
       })
-      .catch((err) => console.error(err));
+      .catch(console.error);
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -103,7 +103,7 @@ function App() {
             cards.map((item) => (item._id === id ? updatedCard : item))
           );
         })
-        .catch((err) => console.log(err));
+        .catch(console.error);
     } else {
       // if not, send a request to remove the user's id from the card's likes array
       api
@@ -133,7 +133,7 @@ function App() {
         );
         closeActiveModal();
       })
-      .catch((err) => console.error(err));
+      .catch(console.error);
   };
 
   // handle user registration
@@ -252,7 +252,6 @@ function App() {
                 handleRegisterModal={openRegisterModal}
                 handleLoginModal={openLoginModal}
                 isLoggedIn={isLoggedIn}
-                currentUser={currentUser}
               />
               <Routes>
                 <Route

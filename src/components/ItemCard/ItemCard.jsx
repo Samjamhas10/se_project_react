@@ -33,8 +33,6 @@ function ItemCard({
     <li className="card">
       <img
         onClick={handleCardClick}
-        isLoggedIn={isLoggedIn}
-        handleProfile={handleProfile}
         className="card__image"
         src={item.imageUrl}
         alt={item.name}

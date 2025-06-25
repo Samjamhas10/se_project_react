@@ -57,7 +57,11 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
         <button type="submit" className="modal__submit modal__submit-login">
           Log in
         </button>
-        <button type="button" className="modal__submit modal__submit-signup">
+        <button
+          // handleRegistration={handleRegistration}
+          type="button"
+          className="modal__submit modal__submit-signup"
+        >
           or Sign Up
         </button>
       </div>
