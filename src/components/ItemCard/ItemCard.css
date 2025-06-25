@@ -1,5 +1,6 @@
 .card {
   width: 325px;
+  height: 325px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -31,6 +32,7 @@
   color: #0000004d;
   border: 1px solid #0000004d;
   cursor: pointer;
+  object-fit: cover;
 }
 
 .card__like-btn {

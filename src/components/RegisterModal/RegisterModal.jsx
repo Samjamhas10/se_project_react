@@ -54,10 +54,10 @@ function RegisterModal({ handleRegistration, isOpen, onClose }) {
         value={data.password}
         onChange={handleChange}
       />
-      <label htmlFor="name">Name*</label>
+      <label htmlFor="register-name">Name*</label>
       <input
         className="modal__input"
-        id="name"
+        id="register-name"
         name="name"
         type="text"
         placeholder="Name"

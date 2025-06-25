@@ -29,24 +29,24 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
       onClose={onClose}
       onSubmit={onLogin}
     >
-      <label htmlFor="email" className="email__field">
+      <label htmlFor="login-email" className="email__field">
         Email
       </label>
       <input
         className="modal__input"
-        id="email"
+        id="login-email"
         name="email"
         type="email"
         placeholder="Email"
         value={data.email}
         onChange={handleChange}
       />
-      <label htmlFor="password" className="password__field">
+      <label htmlFor="login-password" className="password__field">
         Password
       </label>
       <input
         className="modal__input"
-        id="password"
+        id="login-password"
         name="password"
         type="password"
         placeholder="Password"

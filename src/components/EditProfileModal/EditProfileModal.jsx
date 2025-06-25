@@ -9,7 +9,7 @@ function EditProfileModal({ handleProfile, isOpen, onClose, onChangeProfile }) {
     avatar: "",
   });
 
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     if (currentUser) {
@@ -41,22 +41,22 @@ function EditProfileModal({ handleProfile, isOpen, onClose, onChangeProfile }) {
       onClose={onClose}
       onSubmit={onProfile}
     >
-      <label htmlFor="name" className="profile__data">
+      <label htmlFor="edit-name" className="profile__data">
         Name*
       </label>
       <input
         className="modal__input"
-        id="name"
+        id="edit-name"
         name="name"
         type="text"
         placeholder="Name"
         value={data.name}
         onChange={handleChange}
       />
-      <label htmlFor="avatar">Avatar URL*</label>
+      <label htmlFor="edit-avatar">Avatar URL*</label>
       <input
         className="modal__input"
-        id="avatar"
+        id="edit-avatar"
         name="avatar"
         type="url"
         placeholder="Avatar URL"
