@@ -58,7 +58,6 @@ function LoginModal({ handleLogin, onClose, isOpen, openRegisterModal }) {
           Log in
         </button>
         <button
-          // handleRegistration={handleRegistration}
           type="button"
           className="modal__submit modal__submit-signup"
           onClick={openRegisterModal}

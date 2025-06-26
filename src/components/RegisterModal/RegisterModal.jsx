@@ -81,12 +81,18 @@ function RegisterModal({
         value={data.avatar}
         onChange={handleChange}
       />
-      <button type="submit" className="modal__submit">
-        Sign up
-      </button>
-      <button type="button" className="modal__submit" onClick={openLoginModal}>
-        or Log In
-      </button>
+      <div className="register__buttons">
+        <button type="submit" className="modal__submit modal__submit-register">
+          Sign up
+        </button>
+        <button
+          type="button"
+          className="modal__submit modal__submit-log"
+          onClick={openLoginModal}
+        >
+          or Log In
+        </button>
+      </div>
     </ModalWithForm>
   );
 }

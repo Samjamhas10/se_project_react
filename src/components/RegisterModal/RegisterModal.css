@@ -1,0 +1,11 @@
+.modal__submit-register {
+  margin-right: 2px;
+  width: auto;
+
+}
+
+.modal__submit-log {
+  width: auto;
+  color: #00000080;
+  background-color: #fff;
+}

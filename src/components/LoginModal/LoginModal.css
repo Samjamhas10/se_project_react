@@ -17,8 +17,12 @@
 }
 
 .modal__submit-login {
-  margin-right: 8px;
+  margin-right: 2px;
+  width: auto;
 }
 
 .modal__submit-signup {
+  width: auto;
+  color: #00000080;
+  background-color: #fff;
 }
