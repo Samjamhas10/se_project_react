@@ -36,12 +36,11 @@
   position: relative;
   background-color: #ffffff;
   border-radius: 16px;
-  max-width: 400px;
 }
 
 .item-modal__image {
-  max-width: 100%;
-  height: auto;
+  width: 489px;
+  height: 498px;
   border-radius: 16px 16px 0 0;
 }
 

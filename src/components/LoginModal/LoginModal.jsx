@@ -2,7 +2,7 @@ import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
-function LoginModal({ handleLogin, onClose, isOpen }) {
+function LoginModal({ handleLogin, onClose, isOpen, openRegisterModal }) {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -61,6 +61,7 @@ function LoginModal({ handleLogin, onClose, isOpen }) {
           // handleRegistration={handleRegistration}
           type="button"
           className="modal__submit modal__submit-signup"
+          onClick={openRegisterModal}
         >
           or Sign Up
         </button>
