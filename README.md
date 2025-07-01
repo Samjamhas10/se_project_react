@@ -35,10 +35,34 @@ The backend for this project can be found here: https://github.com/Samjamhas10/s
 - MongoDB
 - Mongoose
 
-## Screenshots 
+## Plan for improving the Project
 
+## Screenshots
 
+## Register
+
+![Register Screenshot](register-modal.png)
+
+## Login
+
+![Login Screenshot](login-modal.png)
+
+## Main Route
+
+![Main Screenshot](main-route.png)
+
+## Profile Route
+
+![Profile Screenshot](profile-route.png)
+
+## Update Profile
+
+![Update Screenshot](update-profile.png)
 
 ## Live Demo
 
 Deployment link: https://samjamhas10.github.io/se_project_react/
+
+## Deployment Instructions
+
+## System Requirements
