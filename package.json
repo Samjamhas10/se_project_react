@@ -1,16 +1,16 @@
 {
-  "homepage": "https://samjamhas10.github.io/se_project_react/",
   "name": "se_project_react",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://wtwr-app.jumpingcrab.com",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* sammymadobe@wtwr-app.jumpingcrab.com:/home/sammymadobe/frontend"
   },
   "dependencies": {
     "react": "^18.3.1",

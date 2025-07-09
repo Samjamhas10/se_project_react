@@ -155,3 +155,8 @@ export const coordinates = {
 };
 
 export const APIkey = "63ad3465159e986fa0908997fc15ec88";
+
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr-app.jumpingcrab.com"
+    : "http://localhost:3001";

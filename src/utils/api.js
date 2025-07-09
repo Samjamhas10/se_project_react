@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+import { BASE_URL } from "./constants.js";
 
 export const checkResponse = (res) => {
   if (res.ok) {
@@ -8,13 +8,13 @@ export const checkResponse = (res) => {
 };
 
 function getItems() {
-  return fetch(`${baseUrl}/items`)
+  return fetch(`${BASE_URL}/items`)
     .then(checkResponse)
     .then((items) => items.reverse());
 }
 
 function addNewClothes(data, token) {
-  return fetch(`${baseUrl}/items`, {
+  return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +25,7 @@ function addNewClothes(data, token) {
 }
 
 function deleteItems(item_id, token) {
-  return fetch(`${baseUrl}/items/${item_id}`, {
+  return fetch(`${BASE_URL}/items/${item_id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -35,7 +35,7 @@ function deleteItems(item_id, token) {
 }
 
 function updateProfile(name, avatar, token) {
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function updateProfile(name, avatar, token) {
 }
 
 function addCardLike(item_id, token) {
-  return fetch(`${baseUrl}/items/${item_id}/likes`, {
+  return fetch(`${BASE_URL}/items/${item_id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

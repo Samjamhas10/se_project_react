@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3001"; // where the backend is running
+import { BASE_URL } from "./constants.js"; // where the backend is running
 
 import { checkResponse } from "./api";
 
