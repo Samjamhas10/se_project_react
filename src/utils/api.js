@@ -56,10 +56,10 @@ function addCardLike(item_id, token) {
 }
 
 function removeCardLike(item_id, token) {
-  return fetch(`${baseUrl}/items/${item_id}/likes`, {
+  return fetch(`${BASE_URL}/items/${item_id}/likes`, {
     method: "DELETE",
     headers: {
-      "Content-Type": "appalication/json",
+      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);

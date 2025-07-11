@@ -24,3 +24,9 @@
   white-space: nowrap;
   margin-top: 8px;
 }
+
+/* @media screen and (max-width: 627px) {
+  .logout__profile {
+    display: flex;
+  }
+} */

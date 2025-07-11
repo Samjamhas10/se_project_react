@@ -37,6 +37,8 @@ The backend for this project can be found here: https://github.com/Samjamhas10/s
 
 ## Plan for improving the Project
 
+- Fix mobile view by enhancing the styling to be more dynamic. 
+
 ## Screenshots
 
 ## Register
