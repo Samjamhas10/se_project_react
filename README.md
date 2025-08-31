@@ -21,23 +21,15 @@ The backend for this project can be found here: https://github.com/Samjamhas10/s
 
 ## Project Features
 
-**Frontend:**
-
-- React
-- CSS
-- JSX
-- HTML
-
-**Backend:**
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
+- User Authentication(login, register, update profile)
+- Clothing recommendation based on current weather API
+- Responsive UI
+- Updating profile functionality
 
 ## Plan for improving the Project
 
 - Fix mobile view by enhancing the styling to be more dynamic.
+- 
 
 ## Screenshots
 
@@ -67,4 +59,30 @@ Deployment link: https://wtwr-app.jumpingcrab.com/
 
 ## Deployment Instructions
 
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/samjamhas10/se_project_react.git
+   ```
+
+2. Navigate to project directory:
+
+   `cd se_project_react`
+
+3. Install dependencies
+
+   `npm install`
+
+4. launch the server with the hot reload feature
+
+   `npm run dev`
+
 ## System Requirements
+
+- Node.js: v23.11.0 or higher
+- npm: 10.9.2v or higher
+- Operating system (Linux, macOS, Windows)
+
+
+
+
