@@ -37,7 +37,7 @@ The backend for this project can be found here: https://github.com/Samjamhas10/s
 
 ## Plan for improving the Project
 
-- Fix mobile view by enhancing the styling to be more dynamic. 
+- Fix mobile view by enhancing the styling to be more dynamic.
 
 ## Screenshots
 
@@ -63,7 +63,7 @@ The backend for this project can be found here: https://github.com/Samjamhas10/s
 
 ## Live Demo
 
-Deployment link: https://samjamhas10.github.io/se_project_react/
+Deployment link: https://wtwr-app.jumpingcrab.com/
 
 ## Deployment Instructions
 

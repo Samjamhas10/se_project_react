@@ -8,7 +8,7 @@ function ModalWithForm({
   onSubmit,
   titleStyles,
   titleClass,
-  contentClass,
+  contentClass, 
 }) {
   return (
     <div className={`modal ${isOpen && "modal__opened"}`}>

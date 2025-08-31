@@ -13,7 +13,7 @@ function LoginModal({ handleLogin, onClose, isOpen, openRegisterModal }) {
     setData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
+    }));r
   };
 
   const onLogin = (event) => {
