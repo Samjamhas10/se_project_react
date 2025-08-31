@@ -28,8 +28,8 @@ The backend for this project can be found here: https://github.com/Samjamhas10/s
 
 ## Plan for improving the Project
 
-- Fix mobile view by enhancing the styling to be more dynamic.
-- 
+- Fix mobile view using CSS to achieve a more consistent layout and make it more responsive.
+- Fix theme toggle using CSS and JavaScript to achieve night and day mode based on user preferences
 
 ## Screenshots
 
