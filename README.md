@@ -73,14 +73,14 @@ Deployment link: https://wtwr-app.jumpingcrab.com/
 
    `npm install`
 
-4. launch the server with the hot reload feature
+4. Launch the server with the hot reload feature
 
    `npm run dev`
 
 ## System Requirements
 
 - Node.js: v23.11.0 or higher
-- npm: 10.9.2v or higher
+- npm: v10.9.2 or higher
 - Operating system (Linux, macOS, Windows)
 
 
