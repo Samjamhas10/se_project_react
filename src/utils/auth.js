@@ -1,6 +1,6 @@
 import { BASE_URL } from "./constants.js"; // where the backend is running
-
 import { checkResponse } from "./api";
+import { removeToken } from "./token";
 
 // this function sends a request to create a new user
 export const register = (email, password, name, avatar) => {
@@ -27,11 +27,22 @@ export const authorize = (email, password) => {
 
 // this function checks if the token is valid and returns user info
 export const checkToken = (token) => {
+  if (!token) {
+    return Promise.reject("No token provided");
+  }
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      // If token is invalid, remove it
+      if (err.toString().includes("401")) {
+        removeToken();
+      }
+      throw err; // Re-throw so App.jsx catches it
+    });
 };
