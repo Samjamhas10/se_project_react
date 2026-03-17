@@ -10,6 +10,7 @@ export default function AddItemModal({
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -25,20 +26,21 @@ export default function AddItemModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // Disable the button during submission
 
     onAddItemModalSubmit({ name, imageUrl, weather })
-      // empty the inputs
       .then(() => {
         setName("");
         setImageUrl("");
         setWeather("");
       })
       .catch((err) => {
-        //alert("Could not create new clothing item.")
         console.error(err);
+      })
+      .finally(() => {
+        setIsSubmitting(false); // Re-enable the button after submission
       });
   };
-
   return (
     <ModalWithForm
       title="New garment"
@@ -113,8 +115,8 @@ export default function AddItemModal({
           Cold
         </label>
       </fieldset>
-      <button type="submit" className="modal__submit">
-        Add garment
+      <button type="submit" className="modal__submit" disabled={isSubmitting}>
+        {isSubmitting ? "Adding..." : "Add garment"}
       </button>
     </ModalWithForm>
   );
