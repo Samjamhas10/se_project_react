@@ -21,6 +21,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import Footer from "../Footer/Footer";
+import NotFound from "../NotFound/NotFound";
 
 // import contexts
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
@@ -284,6 +285,7 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
             <AddItemModal
